@@ -29,32 +29,32 @@ const MyFavorites = () => {
     }, []);
 
     return (
-        <div className="flex justify-center">
+        <div className="App bg-black text-white p-8 border-4 border-gray-800">
+          <h2 className="text-4xl font-bold text-blue-600 decoration-double decoration-blue-300">My favorites</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {!loading ? (
-                <div>
-                    <div>Favoritos</div>
-                    {favorites && favorites.length > 0 ? (
-                        <div>
-                            {shows && shows.map((show: IMovieDetail) => (
-                                <MovieCard
-                                    key={show.id}
-                                    title={show.title}
-                                    genreId={show.genres[0].id}
-                                    movieId={show.id}
-                                    voteAverage={show.vote_average}
-                                    posterpath={show.poster_path}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div>No hay favoritos</div>
-                    )}
-                </div>
-            ):(
-                <div>Loading...</div>
+              favorites && favorites.length > 0 ? (
+                shows.map((show: IMovieDetail) => (
+                  <div key={show.id} className="p-2">
+                    <MovieCard
+                      title={show.title}
+                      genreId={show.genres[0].id}
+                      movieId={show.id}
+                      voteAverage={show.vote_average}
+                      posterpath={show.poster_path}
+                    />
+                  </div>
+                ))
+              ) : (
+                <div>No hay favoritos</div>
+              )
+            ) : (
+              <div>Loading...</div>
             )}
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default MyFavorites;
